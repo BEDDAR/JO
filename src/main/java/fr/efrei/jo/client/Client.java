@@ -1,22 +1,21 @@
 package fr.efrei.jo.client;
 
 import fr.efrei.jo.billet.Billet;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
- @Entity
+@Entity
 public class Client {
 
-     @Id
-     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String nom;
     private String prenom;
-    //private List<Billet> reservations;
+    @OneToMany(mappedBy = "client")
+    private List<Billet> reservations = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -42,11 +41,12 @@ public class Client {
         this.prenom = prenom;
     }
 
-   /* public List<Billet> getReservations() {
+    public List<Billet> getReservations() {
         return reservations;
     }
 
     public void setReservations(List<Billet> reservations) {
         this.reservations = reservations;
-    }*/
+    }
+
 }

@@ -1,9 +1,8 @@
 package fr.efrei.jo.Epreuve;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import fr.efrei.jo.lieu.Lieu;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
@@ -13,6 +12,18 @@ public class Epreuve {
     private Integer id;
     private String nom;
     private Date dateEpreuve;
+
+    @ManyToOne
+    @JoinColumn(name="lieu_id")
+    private Lieu lieu;
+
+    public Lieu getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
+    }
 
     public Integer getId() {
         return id;

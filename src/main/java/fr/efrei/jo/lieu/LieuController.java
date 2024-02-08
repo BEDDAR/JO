@@ -1,5 +1,7 @@
 package fr.efrei.jo.lieu;
 
+import fr.efrei.jo.Epreuve.AjoutEpreuve;
+import fr.efrei.jo.billet.AjoutBillet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ public class LieuController {
     }
 
     @GetMapping("/{idLieu}")
-    public ResponseEntity<Lieu> getLieuById(@PathVariable Integer idLieu){
+    public Lieu getLieuById(@PathVariable Integer idLieu){
         return lieuService.getLieuByID(idLieu);
     }
     @DeleteMapping("/{idLieu}")
@@ -34,5 +36,11 @@ public class LieuController {
     @PutMapping("/{idLieu}")
     public ResponseEntity<?>updateClient(@PathVariable Integer idLieu,@RequestBody Lieu lieu){
         return lieuService.updateLieu(idLieu,lieu);
+    }
+
+    @PatchMapping("/{idLieu}/epreuves")
+    public ResponseEntity<?> ajoutEpreuve (@PathVariable Integer idLieu, @RequestBody AjoutEpreuve idsEpreuve){
+        lieuService.ajoutEpreuve(idLieu, idsEpreuve);
+        return ResponseEntity.noContent().build();
     }
 }

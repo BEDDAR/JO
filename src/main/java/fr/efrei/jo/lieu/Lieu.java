@@ -1,9 +1,10 @@
 package fr.efrei.jo.lieu;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import fr.efrei.jo.Epreuve.Epreuve;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Lieu {
@@ -13,6 +14,16 @@ public class Lieu {
     private String nom;
     private String adresse;
 
+    public List<Epreuve> getEpreuves() {
+        return epreuves;
+    }
+
+    public void setEpreuves(List<Epreuve> epreuves) {
+        this.epreuves = epreuves;
+    }
+
+    @OneToMany (mappedBy = "lieu")
+    private List<Epreuve> epreuves=new ArrayList<>();
     public Integer getId() {
         return id;
     }

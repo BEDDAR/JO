@@ -47,4 +47,11 @@ public class EpreuveService {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    public List<Epreuve> getAllById(List<Integer>ids){
+        return epreuveRepository.findAllByIdIn(ids);
+    }
+    public void save(Epreuve epreuve) {
+        epreuveRepository.save(epreuve);
+    }
 }

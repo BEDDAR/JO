@@ -1,12 +1,12 @@
 package fr.efrei.jo.billet;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import fr.efrei.jo.client.Client;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Entity
 public class Billet {
@@ -16,9 +16,20 @@ public class Billet {
     private String reference;
     private Date dateReservation;
     private Date dateEvenement;
-
     public Integer getId() {
         return id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="client_id")
+    private Client client;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public void setId(Integer id) {
@@ -48,4 +59,6 @@ public class Billet {
     public void setDateEvenement(Date dateEvenement) {
         this.dateEvenement = dateEvenement;
     }
+
+
 }
