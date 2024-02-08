@@ -13,7 +13,7 @@ public class EpreuveService {
     @Autowired
     private EpreuveRepository epreuveRepository;
 
-    public List<Epreuve> getEpruves() {
+    public List<Epreuve> getEpreuves() {
         return epreuveRepository.findAll();
     }
 

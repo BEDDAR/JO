@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/epreuves")
 public class EpreuveController {
     @Autowired
@@ -15,7 +15,7 @@ public class EpreuveController {
 
     @GetMapping
     public List<Epreuve> getEpreuves() {
-        return epreuveService.getEpruves();
+        return epreuveService.getEpreuves();
     }
     @PostMapping
     public void ajoutEpreuve(@RequestBody Epreuve epreuve){
