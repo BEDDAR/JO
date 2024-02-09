@@ -14,9 +14,10 @@ public class LieuService {
 
     private LieuRepository lieuRepository;
     private EpreuveService epreuveService;
-    public LieuService(LieuRepository lieuRepository, EpreuveService epreuveService){
-        this.lieuRepository=lieuRepository;
-        this.epreuveService=epreuveService;
+
+    public LieuService(LieuRepository lieuRepository, EpreuveService epreuveService) {
+        this.lieuRepository = lieuRepository;
+        this.epreuveService = epreuveService;
     }
 
     public List<Lieu> getLieux() {
@@ -49,9 +50,10 @@ public class LieuService {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    public Boolean lieuOccupe(Epreuve epreuve, Lieu lieu){
-        for(Epreuve E :lieu.getEpreuves()){
-            if(epreuve.getDateEpreuve()==E.getDateEpreuve()){
+
+    public Boolean lieuOccupe(Epreuve epreuve, Lieu lieu) {
+        for (Epreuve E : lieu.getEpreuves()) {
+            if (epreuve.getDateEpreuve().equals(E.getDateEpreuve())) {
                 return true;
             }
         }
@@ -62,15 +64,15 @@ public class LieuService {
     public void ajoutEpreuve(Integer idLieu, AjoutEpreuves idsEpreuves) {
         Lieu lieu = getLieuByID(idLieu);
         List<Epreuve> epreuves = epreuveService.getAllById(idsEpreuves.getIds());
-        for(Epreuve E:epreuves){
-            for(Epreuve E2:epreuves){
-                if (E.getDateEpreuve()==E2.getDateEpreuve()){
-                   epreuves.remove(E2) ;
+        for (Epreuve E : epreuves) {
+            for (Epreuve E2 : epreuves) {
+                if (E.getDateEpreuve().equals(E2.getDateEpreuve()) && !E.equals(E2)) {
+                    epreuves.remove(E2);
                 }
             }
         }
-        for(Epreuve epreuve:epreuves){
-            if(!lieuOccupe(epreuve,lieu)){
+        for (Epreuve epreuve : epreuves) {
+            if (!lieuOccupe(epreuve, lieu)) {
                 epreuve.setLieu(lieu);
                 epreuveService.save(epreuve);
             }

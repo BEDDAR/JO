@@ -57,7 +57,7 @@ public class ClientService {
 
     public boolean acheterBilletPossible(Client client,Billet billet) {
         for(Billet reservation :client.getReservations()){
-            if(reservation.getEpreuve().getDateEpreuve()==billet.getEpreuve().getDateEpreuve()) {
+            if(reservation.getEpreuve().getDateEpreuve().equals(billet.getEpreuve().getDateEpreuve())) {
                 return false;
             }
         }
@@ -68,7 +68,7 @@ public class ClientService {
         List<Billet> billets = billetService.getAllById(idsBillets.getIds());
         for(Billet b1:billets){
             for(Billet b2:billets){
-                if (b1.getEpreuve().getDateEpreuve()==b2.getEpreuve().getDateEpreuve()){
+                if (b1.getEpreuve().getDateEpreuve().equals(b2.getEpreuve().getDateEpreuve()) &&!b2.equals(b1)){
                     billets.remove(b2) ;
                 }
             }
