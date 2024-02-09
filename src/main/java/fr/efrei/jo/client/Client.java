@@ -1,5 +1,6 @@
 package fr.efrei.jo.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.efrei.jo.billet.Billet;
 import jakarta.persistence.*;
 
@@ -15,6 +16,7 @@ public class Client {
     private String nom;
     private String prenom;
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private List<Billet> reservations = new ArrayList<>();
 
     public Integer getId() {

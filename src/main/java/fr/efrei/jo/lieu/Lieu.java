@@ -1,5 +1,6 @@
 package fr.efrei.jo.lieu;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.efrei.jo.Epreuve.Epreuve;
 import jakarta.persistence.*;
 
@@ -14,15 +15,8 @@ public class Lieu {
     private String nom;
     private String adresse;
 
-    public List<Epreuve> getEpreuves() {
-        return epreuves;
-    }
-
-    public void setEpreuves(List<Epreuve> epreuves) {
-        this.epreuves = epreuves;
-    }
-
     @OneToMany(mappedBy = "lieu")
+    @JsonIgnore
     private List<Epreuve> epreuves = new ArrayList<>();
 
     public Integer getId() {
@@ -47,5 +41,12 @@ public class Lieu {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public List<Epreuve> getEpreuves() {
+        return epreuves;
+    }
+    public void setEpreuves(List<Epreuve> epreuves) {
+        this.epreuves = epreuves;
     }
 }
