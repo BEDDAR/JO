@@ -14,8 +14,6 @@ public class Billet {
     private Integer id;
     private String reference;
     private Date dateReservation;
-    private Date dateEvenement;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "epreuve_id")
     private Epreuve epreuve;
@@ -53,14 +51,6 @@ public class Billet {
 
     public void setDateReservation(Date dateReservation) {
         this.dateReservation = dateReservation;
-    }
-
-    public Date getDateEvenement() {
-        return dateEvenement;
-    }
-
-    public void setDateEvenement(Date dateEvenement) {
-        this.dateEvenement = dateEvenement;
     }
 
     public Epreuve getEpreuve() {

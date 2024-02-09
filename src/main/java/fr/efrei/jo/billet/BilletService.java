@@ -43,7 +43,6 @@ public class BilletService {
         if (billetAModifier != null) {
             billetAModifier.setReference(billet.getReference());
             billetAModifier.setDateReservation(billet.getDateReservation());
-            billetAModifier.setDateEvenement(billet.getDateEvenement());
             billetRepository.save(billetAModifier);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

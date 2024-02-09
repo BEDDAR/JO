@@ -56,7 +56,7 @@ public class ClientService {
 
     public boolean acheterBilletPossible(Client client,Billet billet) {
         for(Billet reservation :client.getReservations()){
-            if(reservation.getDateEvenement()==billet.getDateEvenement()) {
+            if(reservation.getEpreuve().getDateEpreuve()==billet.getEpreuve().getDateEpreuve()) {
                 return false;
             }
         }
