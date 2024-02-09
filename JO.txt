@@ -1,0 +1,63 @@
+retourne tous les billet qui sont dans la table billet get http://localhost:9091/billets
+
+Ajout un billet dans la table billet post  http://localhost:9091/billets
+
+Retourne le billet avec l'id "id" get http://localhost:9091/billets/id
+
+Supprime le billet avec l'id "id" delete  http://localhost:9091/billets/id
+
+Mettre à jour le billet avec l'id "id" put  http://localhost:9091/billets/id
+
+********************************************************************************
+
+retourne tous les clients qui sont dans la table client get http://localhost:9091/clients
+
+Ajout un client dans la table client post  http://localhost:9091/clients
+
+Retourne le client avec l'id "id" get http://localhost:9091/clients/id
+
+Supprime le client avec l'id "id" delete  http://localhost:9091/clients/id
+
+Mettre à jour le client avec l'id "id" put  http://localhost:9091/clients/id
+
+
+***********************************************************************************
+
+retourne toutes les epreuves qui sont dans la table Epreuve get http://localhost:9091/epreuves
+
+Ajout une epreuve dans la table Epreuve post  http://localhost:9091/epreuves
+
+Retourne l'epreuve avec l'id "id" get http://localhost:9091/epreuves/id
+
+Supprime l'epreuve avec l'id "id" delete  http://localhost:9091/epreuves/id
+
+Mettre à jour l'epreuve avec l'id "id" put  http://localhost:9091/epreuves/id
+
+***********************************************************************************
+
+retourne tous les lieux qui sont dans la table lieu get http://localhost:9091/lieux
+
+Ajout un lieu dans la table Lieu post  http://localhost:9091/lieux
+
+Retourne le lieu avec l'id "id" get http://localhost:9091/lieux/id
+
+Supprime le lieu avec l'id "id" delete  http://localhost:9091/lieux/id
+
+Mettre à jour le lieu avec l'id "id" put  http://localhost:9091/lieux/id
+
+***********************************************************************************
+Les Relations
+
+Ajout d'un billet pour un client avac l'id client 'id' patch http://localhost:9091/clients/id/billets
+
+Ajout d'une epreuve pour un lieu avac l'id lieu 'id' patch http://localhost:9091/lieux/id/epreuves
+
+Ajout d'une epreuve dans plusieurs billets avec id de l'épreuve patch http://localhost:9091/epreuves/id/billets
+
+
+
+
+
+"dateReservation":"2024-02-08",
+    "dateEvenement":"2024-08-10",
+    "reference":"ABCD"
