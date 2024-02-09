@@ -58,9 +58,17 @@ public class LieuService {
         return false;
     }
 
+
     public void ajoutEpreuve(Integer idLieu, AjoutEpreuves idsEpreuves) {
         Lieu lieu = getLieuByID(idLieu);
         List<Epreuve> epreuves = epreuveService.getAllById(idsEpreuves.getIds());
+        for(Epreuve E:epreuves){
+            for(Epreuve E2:epreuves){
+                if (E.getDateEpreuve()==E2.getDateEpreuve()){
+                   epreuves.remove(E2) ;
+                }
+            }
+        }
         for(Epreuve epreuve:epreuves){
             if(!lieuOccupe(epreuve,lieu)){
                 epreuve.setLieu(lieu);

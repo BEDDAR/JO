@@ -1,5 +1,6 @@
 package fr.efrei.jo.client;
 
+import fr.efrei.jo.Epreuve.Epreuve;
 import fr.efrei.jo.billet.AjoutBillet;
 import fr.efrei.jo.billet.Billet;
 import fr.efrei.jo.billet.BilletService;
@@ -65,6 +66,13 @@ public class ClientService {
     public void ajoutBillets(Integer idClient, AjoutBillet idsBillets) {
         Client client = getClientById(idClient);
         List<Billet> billets = billetService.getAllById(idsBillets.getIds());
+        for(Billet b1:billets){
+            for(Billet b2:billets){
+                if (b1.getEpreuve().getDateEpreuve()==b2.getEpreuve().getDateEpreuve()){
+                    billets.remove(b2) ;
+                }
+            }
+        }
         for(Billet billet:billets){
             if(acheterBilletPossible(client,billet)){
                 billet.setClient(client);
