@@ -3,13 +3,13 @@ package fr.efrei.jo.Epreuve;
 import java.util.List;
 
 public class AjoutEpreuve {
-    private List<Integer> ids;
+    private Integer id;
 
-    public List<Integer> getIds() {
-        return this.ids;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIds(List<Integer> ids) {
-        this.ids = ids;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

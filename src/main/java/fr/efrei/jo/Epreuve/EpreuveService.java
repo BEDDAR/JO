@@ -21,12 +21,8 @@ public class EpreuveService {
         epreuveRepository.save(epreuve);
     }
 
-    public ResponseEntity<Epreuve> getEpreuveByID(Integer id) {
-        Epreuve epreuve = epreuveRepository.findById(id).orElse(null);
-        if (epreuve != null) {
-            return new ResponseEntity<>(epreuve, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Epreuve getEpreuveByID(Integer id) {
+        return epreuveRepository.findById(id).orElse(null);
     }
 
     public ResponseEntity<?> deleteEpreuve(Integer id) {

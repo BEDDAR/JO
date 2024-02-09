@@ -14,7 +14,7 @@ public class Epreuve {
     private Date dateEpreuve;
 
     @ManyToOne
-    @JoinColumn(name="lieu_id")
+    @JoinColumn(name = "lieu_id")
     private Lieu lieu;
 
     public Lieu getLieu() {

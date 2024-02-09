@@ -22,8 +22,9 @@ public class Lieu {
         this.epreuves = epreuves;
     }
 
-    @OneToMany (mappedBy = "lieu")
-    private List<Epreuve> epreuves=new ArrayList<>();
+    @OneToMany(mappedBy = "lieu")
+    private List<Epreuve> epreuves = new ArrayList<>();
+
     public Integer getId() {
         return id;
     }

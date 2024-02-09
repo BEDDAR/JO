@@ -1,6 +1,7 @@
 package fr.efrei.jo.Epreuve;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,11 @@ public class EpreuveController {
 
     @GetMapping("/{idEpreuve}")
     public ResponseEntity<Epreuve> getEpreuveById(@PathVariable Integer idEpreuve){
-        return epreuveService.getEpreuveByID(idEpreuve);
+        Epreuve epreuve = epreuveService.getEpreuveByID(idEpreuve);
+        if(epreuve == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return new ResponseEntity<>(epreuve, HttpStatus.OK);
     }
     @DeleteMapping("/{idEpreuve}")
     public ResponseEntity<?>deleteEpreuve(@PathVariable Integer idEpreuve){

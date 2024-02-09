@@ -1,17 +1,12 @@
 package fr.efrei.jo.lieu;
 
-import fr.efrei.jo.Epreuve.AjoutEpreuve;
+import fr.efrei.jo.Epreuve.AjoutEpreuves;
 import fr.efrei.jo.Epreuve.Epreuve;
 import fr.efrei.jo.Epreuve.EpreuveService;
-import fr.efrei.jo.billet.AjoutBillet;
-import fr.efrei.jo.billet.Billet;
-import fr.efrei.jo.client.Client;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -63,7 +58,7 @@ public class LieuService {
         return false;
     }
 
-    public void ajoutEpreuve(Integer idLieu, AjoutEpreuve idsEpreuves) {
+    public void ajoutEpreuve(Integer idLieu, AjoutEpreuves idsEpreuves) {
         Lieu lieu = getLieuByID(idLieu);
         List<Epreuve> epreuves = epreuveService.getAllById(idsEpreuves.getIds());
         for(Epreuve epreuve:epreuves){

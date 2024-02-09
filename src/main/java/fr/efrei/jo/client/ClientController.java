@@ -1,7 +1,9 @@
 package fr.efrei.jo.client;
 
+import com.sun.net.httpserver.Authenticator;
 import fr.efrei.jo.billet.AjoutBillet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +27,12 @@ public class ClientController {
     }
 
     @GetMapping("/{idClient}")
-    public Client getClientById(@PathVariable Integer idClient) {
-        return clientService.getClientById(idClient);
+    public ResponseEntity<Client> getClientById(@PathVariable Integer idClient) {
+        Client client=clientService.getClientById(idClient);
+        if(client == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return new ResponseEntity<>(client, HttpStatus.OK);
     }
 
     @DeleteMapping("/{idBillet}")

@@ -1,12 +1,11 @@
 package fr.efrei.jo.billet;
 
+import fr.efrei.jo.Epreuve.AjoutEpreuves;
+import fr.efrei.jo.Epreuve.Epreuve;
 import fr.efrei.jo.client.Client;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Entity
 public class Billet {
@@ -16,13 +15,15 @@ public class Billet {
     private String reference;
     private Date dateReservation;
     private Date dateEvenement;
-    public Integer getId() {
-        return id;
-    }
+    @OneToOne
+    private Epreuve epreuve;
 
     @ManyToOne
     @JoinColumn(name="client_id")
     private Client client;
+    public Integer getId() {
+        return id;
+    }
 
     public Client getClient() {
         return client;
@@ -60,5 +61,12 @@ public class Billet {
         this.dateEvenement = dateEvenement;
     }
 
+    public Epreuve getEpreuve() {
+        return epreuve;
+    }
+
+    public void setEpreuve(Epreuve epreuve) {
+        this.epreuve = epreuve;
+    }
 
 }

@@ -1,10 +1,9 @@
 package fr.efrei.jo.lieu;
 
-import fr.efrei.jo.Epreuve.AjoutEpreuve;
-import fr.efrei.jo.billet.AjoutBillet;
+import fr.efrei.jo.Epreuve.AjoutEpreuves;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +15,9 @@ public class LieuController {
     private LieuService lieuService;
 
     @GetMapping
-    public List<Lieu> getLieux() {
-        return lieuService.getLieux();
+    public ResponseEntity<List<Lieu>>getLieux() {
+
+        return new ResponseEntity<>(lieuService.getLieux(),HttpStatus.OK);
     }
     @PostMapping
     public void ajoutLieu(@RequestBody Lieu lieu){
@@ -25,8 +25,13 @@ public class LieuController {
     }
 
     @GetMapping("/{idLieu}")
-    public Lieu getLieuById(@PathVariable Integer idLieu){
-        return lieuService.getLieuByID(idLieu);
+    public ResponseEntity<Lieu> getLieuById(@PathVariable Integer idLieu){
+
+        Lieu lieu = lieuService.getLieuByID(idLieu);
+        if(lieu == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return new ResponseEntity<>(lieu, HttpStatus.OK);
     }
     @DeleteMapping("/{idLieu}")
     public ResponseEntity<?>deleteLieu(@PathVariable Integer idLieu){
@@ -39,7 +44,7 @@ public class LieuController {
     }
 
     @PatchMapping("/{idLieu}/epreuves")
-    public ResponseEntity<?> ajoutEpreuve (@PathVariable Integer idLieu, @RequestBody AjoutEpreuve idsEpreuve){
+    public ResponseEntity<?> ajoutEpreuve (@PathVariable Integer idLieu, @RequestBody AjoutEpreuves idsEpreuve){
         lieuService.ajoutEpreuve(idLieu, idsEpreuve);
         return ResponseEntity.noContent().build();
     }
