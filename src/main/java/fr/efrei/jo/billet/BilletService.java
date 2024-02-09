@@ -1,17 +1,11 @@
 package fr.efrei.jo.billet;
 
-import fr.efrei.jo.Epreuve.AjoutEpreuve;
-import fr.efrei.jo.Epreuve.AjoutEpreuves;
-import fr.efrei.jo.Epreuve.Epreuve;
+
 import fr.efrei.jo.Epreuve.EpreuveService;
-import fr.efrei.jo.client.Client;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,9 +14,8 @@ public class BilletService {
     private BilletRepository billetRepository;
     private EpreuveService epreuveService;
 
-    public BilletService(BilletRepository billetRepository, EpreuveService epreuveService) {
+    public BilletService(BilletRepository billetRepository) {
         this.billetRepository = billetRepository;
-        this.epreuveService = epreuveService;
     }
 
     public List<Billet> getBillets() {
@@ -61,14 +54,9 @@ public class BilletService {
         return billetRepository.findAllByIdIn(ids);
     }
 
+
     public void save(Billet billet) {
         billetRepository.save(billet);
     }
 
-    public void AjoutEpreuve(Integer idBillet, AjoutEpreuve idEpreuve) {
-        Billet billet = getBilletByID(idBillet);
-        Epreuve epreuve = epreuveService.getEpreuveByID(idEpreuve.getId());
-        billet.setEpreuve(epreuve);
-        billetRepository.save(billet);
-    }
 }

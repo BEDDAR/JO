@@ -15,12 +15,14 @@ public class Billet {
     private String reference;
     private Date dateReservation;
     private Date dateEvenement;
-    @OneToOne
-    private Epreuve epreuve;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "epreuve_id")
+    private Epreuve epreuve;
     @ManyToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name = "client_id")
     private Client client;
+
     public Integer getId() {
         return id;
     }

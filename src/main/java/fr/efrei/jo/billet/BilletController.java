@@ -1,6 +1,7 @@
 package fr.efrei.jo.billet;
 
 import fr.efrei.jo.Epreuve.AjoutEpreuve;
+import fr.efrei.jo.Epreuve.AjoutEpreuves;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +42,4 @@ public class BilletController {
         return billetService.updateBillet(idBillet,billet);
     }
 
-    @PatchMapping("/{idBillet}/epreuves")
-    public ResponseEntity<?> AjoutEpreuve(@PathVariable Integer idBillet, @RequestBody AjoutEpreuve idEpreuve) {
-        billetService.AjoutEpreuve(idBillet,idEpreuve);
-        return ResponseEntity.noContent().build();
-    }
 }

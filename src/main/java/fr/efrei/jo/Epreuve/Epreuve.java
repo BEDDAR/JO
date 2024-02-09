@@ -1,9 +1,13 @@
 package fr.efrei.jo.Epreuve;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.efrei.jo.billet.Billet;
 import fr.efrei.jo.lieu.Lieu;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Epreuve {
@@ -16,6 +20,10 @@ public class Epreuve {
     @ManyToOne
     @JoinColumn(name = "lieu_id")
     private Lieu lieu;
+
+    @OneToMany(mappedBy = "epreuve")
+    @JsonIgnore
+    private List<Billet> billets = new ArrayList<>();
 
     public Lieu getLieu() {
         return lieu;
@@ -48,4 +56,6 @@ public class Epreuve {
     public void setDateEpreuve(Date dateEpreuve) {
         this.dateEpreuve = dateEpreuve;
     }
+
+
 }

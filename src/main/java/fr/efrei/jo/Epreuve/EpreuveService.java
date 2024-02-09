@@ -1,17 +1,26 @@
 package fr.efrei.jo.Epreuve;
 
+import fr.efrei.jo.billet.AjoutBillet;
+import fr.efrei.jo.billet.Billet;
+import fr.efrei.jo.billet.BilletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class EpreuveService {
 
-    @Autowired
     private EpreuveRepository epreuveRepository;
+    private BilletService billetService;
+
+    public EpreuveService(EpreuveRepository epreuveRepository, BilletService billetService) {
+        this.epreuveRepository = epreuveRepository;
+        this.billetService = billetService;
+    }
 
     public List<Epreuve> getEpreuves() {
         return epreuveRepository.findAll();
@@ -44,10 +53,21 @@ public class EpreuveService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public List<Epreuve> getAllById(List<Integer>ids){
+    public List<Epreuve> getAllById(List<Integer> ids) {
         return epreuveRepository.findAllByIdIn(ids);
     }
+
     public void save(Epreuve epreuve) {
         epreuveRepository.save(epreuve);
     }
+
+    public void AjoutBillets(Integer idEpreuve, AjoutBillet idsbillet) {
+        Epreuve epreuve = getEpreuveByID(idEpreuve);
+        List<Billet> billets = billetService.getAllById(idsbillet.getIds());
+        billets.forEach(billet -> {
+            billet.setEpreuve(epreuve);
+            billetService.save(billet);
+        });
+    }
+
 }

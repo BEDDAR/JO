@@ -1,5 +1,6 @@
 package fr.efrei.jo.Epreuve;
 
+import fr.efrei.jo.billet.AjoutBillet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,11 @@ public class EpreuveController {
     @PutMapping("/{idEpreuve}")
     public ResponseEntity<?>updateClient(@PathVariable Integer idEpreuve,@RequestBody Epreuve epreuve){
         return epreuveService.updateEpreuve(idEpreuve,epreuve);
+    }
+
+    @PatchMapping("/{idEpreuve}/billets")
+    public ResponseEntity<?> ajoutBillets(@PathVariable Integer idEpreuve, @RequestBody AjoutBillet idsBillet) {
+        epreuveService.AjoutBillets(idEpreuve,idsBillet);
+        return ResponseEntity.noContent().build();
     }
 }
